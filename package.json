@@ -1,0 +1,25 @@
+{
+  "name": "express-tasks",
+  "version": "1.0.0",
+  "description": "training tasks",
+  "main": "main.js",
+  "scripts": {
+    "test": "npm test",
+    "start": "nodemon main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SadraMehriyan/express-tasks.git"
+  },
+  "author": "Sadra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SadraMehriyan/express-tasks/issues"
+  },
+  "homepage": "https://github.com/SadraMehriyan/express-tasks#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "hbs": "^4.2.0",
+    "nodemon": "^2.0.22"
+  }
+}
