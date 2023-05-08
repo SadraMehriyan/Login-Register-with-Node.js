@@ -1,13 +1,16 @@
 const express = require('express');
 const app = express();
+const User = require("./user");
+
+const data = []
 
 app.use(express.urlencoded({extended: 'false'}))
 app.use(express.json())
 
-const data = []
-
 app.post("/register", (req, res) => {
-  data.push(req.body)
+  const d = req.body
+  const user = new User(d.name, d.email, d.password)
+  data.push(user)
   console.log(data)
   res.status(200).end()
 })
