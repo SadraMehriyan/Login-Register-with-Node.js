@@ -1,5 +1,5 @@
 const express = require("express");
-const validations = require("../Middlewares/Valodation/validations");
+const validations = require("../Middlewares/Validation/validations");
 const controller = require("../Controllers/controller.js");
 
 class MainRouter {
