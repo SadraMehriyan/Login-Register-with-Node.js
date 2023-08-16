@@ -1,24 +1,18 @@
-const JwtHandler = require("../../Utils/Verification/Jwt/jwt");
-const ErrorResponse = require("../../Utils/Response/Response");
+const JWTHandler = require("../../Utils/Verification/Jwt/jwt");
 
 class JwtAuth {
-
-  constructor() {
-    this.errorResponse = new ErrorResponse();
-  }
-  
-  jwtValidation = (req, res, next) => {
+  jwtValidation(req, res, next) {
     const token = req.header("Authorization")?.replace("Bearer ", "");
-    if (typeof token !== "undefined") {
-      JwtHandler.verify(token).then((payload) => {
-          req.body.userInfo = payload;
+    if (token) {
+      JWTHandler.verify(token).then(() => {
           next();
         }).catch((error) => {
-          this.errorResponse.client.unAuthorized(res, error);
+          res.status(400).send(error);
         });
     } else {
-      this.errorResponse.client.unAuthorized(res);
+      return res.status(400).send("token didn't verify");
     }
-  };
+  }
 }
-module.exports = JwtAuth;
+
+module.exports = new JwtAuth;

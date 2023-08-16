@@ -1,6 +1,7 @@
 const express = require("express");
 const validations = require("../Middlewares/Validation/validations");
 const controller = require("../Controllers/controller.js");
+const JwtAuth = require("../Middlewares/Validation/jwt")
 
 class MainRouter {
   constructor() {
@@ -11,7 +12,8 @@ class MainRouter {
   config() {
     this.router.post("/register", validations.validateRegister, controller.registerUser);
     this.router.post("/login", validations.validateLogin, controller.loginUser);
-    this.router.delete("/delete/:id", validations.validateDelete, controller.deleteUser);
+    this.router.delete("/delete", JwtAuth.jwtValidation , validations.validateDelete, controller.deleteUser);
+    this.router.put("/edit", JwtAuth.jwtValidation, validations.validateEdit, controller.editUser);
   }
 
   getRoutes() {

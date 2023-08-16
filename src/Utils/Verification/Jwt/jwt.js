@@ -3,7 +3,6 @@ const secret_key = process.env.JWT_SECRET_KEY;
 const expiration_time = "3d";
 
 class JWTHandler {
-  
   static sign(object, expiration = expiration_time) {
     return jwt.sign(object, secret_key, { expiresIn: expiration });
   }
@@ -17,10 +16,10 @@ class JWTHandler {
           resolve(decoded);
         }
       });
+    }).catch((error) => {
+      return error.message;
     });
   }
-  static decode(token) {
-    return jwt.decode(token);
-  }
+  
 }
 module.exports = JWTHandler;
